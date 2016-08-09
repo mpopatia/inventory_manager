@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-<html lang="en">
+<html lang="en" ng-app="manager">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet" href="{% static 'manager/css/bootstrap.min.css' %}" type="text/css">
+
+    <script src="{% static 'manager/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'manager/js/angular.min.js' %}"></script>
+    <script src="{% static 'manager/js/app.js' %}"></script>
+
 </head>
 <body>
     <h1>Game on?</h1>
+    <h2>This is {[{4 + 6}]}</h2>
+
+    <div ng-controller="ItemController as items">
+
+        <form class="form-inline">
+            <input ng-model="query" type="text" placeholder="Filter by" autofocus>
+        </form>
+
+        <div ng-repeat="item in items.items_array | filter:query">
+            <h2>{[{item.name}]}</h2>
+            <h3>{[{item.quantity}]}</h3>
+        </div>
+    </div>
+
+
 </body>
 </html>
